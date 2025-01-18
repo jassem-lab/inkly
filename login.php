@@ -65,7 +65,7 @@
                 <div class="auth-credentials m-b-xxl">
                     <label for="signInEmail" class="form-label">Email address</label>
                     <input type="email" class="form-control m-b-md" name="email" id="signInEmail"
-                        aria-describedby="signInEmail" placeholder="example@majdoub.com">
+                        aria-describedby="signInEmail" placeholder="example@example.com">
 
                     <label for="signInPassword" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" id="signInPassword"

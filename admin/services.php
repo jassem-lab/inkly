@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "majdoub";
+$dbname = "inkly";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -17,37 +17,12 @@ if (isset($_POST['enregistrer_mail'])) {
 
     $titre = $_POST["titre"];
     $description = $_POST["description"];
-    $terms = $_POST["terms"];
-    $architect = $_POST["architect"];
-    $client = $_POST["client"];
-    $strategy = $_POST["strategy"];
-    $project_type = $_POST["project_type"];
-    $date = $_POST["date"];
 
-    $sql = "INSERT INTO `portfolio`(`titre`,`description`,`terms`,`architect`,`client`,`strategy`,`project_type`,`date`) VALUES ('$titre','$description','$terms','$architect','$client','$strategy','$project_type','$date')";
-    $file = '';
-    $file_tmp = '';
-    $location = "../assets/portfolio/";
-    $data = '';
-    foreach ($_FILES['images']['name'] as $key => $val) {
-        $file = $_FILES['images']['name'][$key];
-        $file_tmp = $_FILES['images']['tmp_name'][$key];
-        move_uploaded_file($file_tmp, $location . $file);
-        $data .= $file . " ";
-    }
-    $query = "insert into portfolio_images (titre,image) values('$titre','$data')";
-    $fire = mysqli_query($conn, $query);
-    if ($fire) {
-        echo "Successful";
-    } else {
-        echo "Failed";
-    }
+    $sql = "INSERT INTO `services`(`titre`,`description`) VALUES ('$titre','$description')";
 
     if (mysqli_query($conn, $sql)) {
 
-        echo '<SCRIPT LANGUAGE="JavaScript">document.location.href="realisations.php?ID=' . $id . '&suc=1" </SCRIPT>';
-
-
+        echo '<SCRIPT LANGUAGE="JavaScript">document.location.href="services.php?ID=' . $id . '&suc=1" </SCRIPT>';
     } else {
         echo ' <div class="alert alert-custom alert-indicator-bottom indicator-danger" role="alert">
         <div class="alert-content">
@@ -60,8 +35,7 @@ if (isset($_POST['enregistrer_mail'])) {
 $titre = "";
 $strategy = "";
 $description = "";
-$service_type = "";
-$terms = "";
+
 
 ?>
 
@@ -75,7 +49,7 @@ $terms = "";
                     <span class="alert-text">Service est mis à jour...</span>
                 </div>
             </div>
-        <?php }
+    <?php }
     } ?>
     <div class="content-wrapper">
         <div class="container-fluid">
@@ -86,11 +60,7 @@ $terms = "";
                     </div>
                 </div>
             </div>
-
             <form class="row g-3 needs-validation" action="" method="POST" enctype="multipart/form-data">
-
-
-
                 <div class="col-md-3 position-relative mb-5">
                     <label for="validationTooltip02" class="form-label">Title</label>
                     <input type="text" class="form-control" id="validationTooltip02" name="titre" required>
@@ -102,59 +72,18 @@ $terms = "";
                     <div class="col">
                         <label for="validationTooltip02" class="form-label">Description</label>
                         <div class="card">
-
                             <div class="card-body">
-                                <textarea id='makeMeSummernote' name='description1' class="form-control"></textarea>
+                                <textarea id='makeMeSummernote' name='description' class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 position-relative mb-5">
-                    <label for="validationTooltip02" class="form-label">Service Type</label>
-                    <select class="form-control select2" name="service_type" id="service_type" required>
-                        <option value=""> Select a project Type </option>
-                        <?php
-                        $req = "select * from service_type ";
-                        $query = mysqli_query($conn, $req);
-                        while ($enreg = mysqli_fetch_array($query)) {
-                            ?>
-                            <option value="<?php echo $enreg['title']; ?>" <?php if ($service_type == $enreg['title']) { ?> selected
-                                <?php } ?>>
-                                <?php echo $enreg['title']; ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-                </div>
-             
-                <div class="col-md-3 position-relative mb-5">
-                    <label for="validationTooltip02" class="form-label">Strategy</label>
-                    <input type="text" class="form-control" id="validationTooltip02" name="terms">
-                    <div class="valid-tooltip">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-3 position-relative mb-5">
-                    <label for="validationTooltip02" class="form-label">Images</label>
-                    <input type="file" class="form-control" id="validationTooltip02" name="images[]" id="images"
-                        multiple>
-                  
-                    <div class="valid-tooltip">
-                        Looks good!
-                    </div>
-                </div>
-               
-             
-               
-
-
                 <div class="col-12">
                     <button type="" class="btn btn-primary"
                         style="background-color:#0d7cbc;border-color: #8833ff;">Enregistrer</button>
                     <input class="form-control" type="hidden" name="enregistrer_mail">
-
                 </div>
             </form>
-
             <div class="row">
                 <div class="col">
                     <div class="page-description">
@@ -165,31 +94,21 @@ $terms = "";
                             <tr>
                                 <th scope="col">Title</th>
                                 <th scope="col">description</th>
-                                <th scope="col">Architect</th>
-                                <th scope="col">Client</th>
-                                <th scope="col">Terms</th>
-                                <th scope="col">Strategy</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Images</th>
-                                <th scope="col">Project Type</th>
+
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $req = "select * from portfolio";
+                            $req = "select * from services";
                             $query = mysqli_query($conn, $req);
                             while ($enreg = mysqli_fetch_array($query)) {
                                 $id = $enreg["id"];
                                 $titre = $enreg["titre"];
                                 $description = $enreg["description"];
-                                $architect = $enreg["architect"];
-                                $terms = $enreg["terms"];
-                                $client = $enreg["client"];
-                                $strategy = $enreg["strategy"];
-                                $project_type = $enreg["project_type"];
+
                                 $date = $enreg["date"];
-                                ?>
+                            ?>
                                 <tr>
                                     <td>
                                         <?php echo $titre ?>
@@ -197,43 +116,6 @@ $terms = "";
                                     <td>
                                         <?php echo $description ?>
                                     </td>
-                                    <td>
-                                        <?php echo $architect ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $terms ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $client ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $strategy ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $date ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                        $i = "";
-                                        $query2 = "SELECT * FROM `portfolio_images` WHERE `titre` = '" . $enreg['titre'] . "' ";
-                                        $fire = mysqli_query($conn, $query2);
-                                        $data = mysqli_fetch_array($fire);
-                                        $res = $data['image'];
-                                        $res = explode(" ", $res);
-                                        $count = count($res) - 1;
-                                        for ($i = 0; $i < $count; ++$i) {
-                                            ?>
-                                            <img src="../assets/portfolio/<?= $res[$i] ?>" height="100px" width="100px" />
-                                            <?php
-                                        }
-                                        echo "<p style='color:green;font-size:12px'>Total " . $count . " images found.";
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                       echo $project_type ; 
-                                        ?>
-
                                     </td>
                                     <td><button type="button" onclick="Supprimer('<?php echo $id; ?>')"
                                             class="btn btn-danger btn-burger"><i
@@ -241,7 +123,6 @@ $terms = "";
                                     </td>
                                 </tr>
                             <?php } ?>
-
                         </tbody>
                     </table>
                 </div>
