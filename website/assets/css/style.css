@@ -48,8 +48,8 @@ Developer:		:  Rakibul Islam Dewan -->> (dj.rakibul690@gmail.com)
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
 @font-face {
-  font-family: "PWSignaturetwo";
-  src: url("../fonts/pw_signature_two/PWSignaturetwo.woff2") format("woff2"), url("../fonts/pw_signature_two/PWSignaturetwo.woff") format("woff");
+  font-family: "ClashDisplay";
+  src: url("../../fonts/ClashDisplay-Variable.woff2")format("woff2"), url("../../fonts/ClashDisplay-Variable.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
@@ -65,7 +65,7 @@ body {
   font-style: normal;
   padding-top: 150px;
   color: #434343;
-  font-family: "Poppins", sans-serif;
+  font-family: "ClashDisplay";
   background-color: #ffffff;
   text-rendering: optimizelegibility;
   -moz-osx-font-smoothing: grayscale;
@@ -111,7 +111,7 @@ button {
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
+  font-family: "ClashDisplay";
 }
 a:hover,
 button:hover {
@@ -147,13 +147,13 @@ img {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: #000000;
-  font-family: "Montserrat", sans-serif;
+  font-family: "ClashDisplay";
 }
 
 strong, span, small, label, i {
   margin: 0px;
   padding: 0px;
-  font-family: "Poppins", sans-serif;
+  font-family: "ClashDisplay";
 }
 
 .form-item {
@@ -712,7 +712,7 @@ strong, span, small, label, i {
   border-radius: 0px;
   position: relative;
   text-align: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "ClashDisplay", sans-serif;
   background-color: #000000;
   transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }

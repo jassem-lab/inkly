@@ -333,11 +333,11 @@ while ($enreg = mysqli_fetch_array($query)) {
 
 	<!-- map-section - start
 			================================================== -->
-	<div id="map-section" class="map-section clearfix">
+	<!-- <div id="map-section" class="map-section clearfix"> -->
 		<!-- <div id="google-map" class="google-map" data-aos="fade-up" data-aos-delay="100">
 					<div id="googleMaps"></div>
 				</div> -->
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d286.2836498250334!2d10.58046809317627!3d35.7279458876916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130275759ac9d10d%3A0x698e3915682cef7d!2sSousse!5e0!3m2!1sen!2stn!4v1737728383301!5m2!1sen!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d286.2836498250334!2d10.58046809317627!3d35.7279458876916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130275759ac9d10d%3A0x698e3915682cef7d!2sSousse!5e0!3m2!1sen!2stn!4v1737728383301!5m2!1sen!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
 		<!-- <div id="mapBox" data-lat="40.701083" data-lon="-74.1522848" data-zoom="10" data-info="PO Box CT16122 Collins Street West, Victoria 8007, Australia." data-mlat="40.701083" data-mlon="-74.1522848"> -->
 	</div>
 	</div>

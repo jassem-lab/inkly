@@ -88,9 +88,9 @@
 
   $(window).on('scroll', function () {
     if ($(this).scrollTop() > 300) {
-      $(".header-section.text-white .brand-logo > a > img").attr("src", "images/logo.png");
+      $(".header-section.text-white .brand-logo > a > img").attr("src", "../images/logo.png");
     } else {
-      $(".header-section.text-white .brand-logo > a > img").attr("src", "images/logo.png");
+      $(".header-section.text-white .brand-logo > a > img").attr("src", "../images/logo.png");
     }
   });
   // sticky header - end

@@ -1,9 +1,6 @@
 <?php
+$config = include('../config.php');
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "inkly";
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
 ?>

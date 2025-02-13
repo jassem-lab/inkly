@@ -97,7 +97,7 @@ while ($enreg = mysqli_fetch_array($query)) {
 				<div class="col-lg-4">
 					<div class="brand-logo">
 						<a href="index.php">
-							<img src="images/logo.png" alt="logo_not_found">
+							<img src="../images/logo.png" alt="logo_not_found">
 						</a>
 						<div class="mobile-menu-btns float-right ul-li-right">
 							<ul class="clearfix">
@@ -120,7 +120,7 @@ while ($enreg = mysqli_fetch_array($query)) {
 								<a href="index.php">Home</a>
 							</li>
 							<li class="">
-								<a href="portfolio.php">Réalisations</a>
+								<a href="realisations.php">Réalisations</a>
 							</li>
 							<li class="menu-item-has-child">
 								<a href="#!">Services</a>
@@ -142,9 +142,9 @@ while ($enreg = mysqli_fetch_array($query)) {
 							<li class="">
 								<a href="about-us.php">Inkly</a>
 							</li>
-							<li class="">
+							<!-- <li class="">
 								<a href="blog.php">Actualités</a>
-							</li>
+							</li> -->
 							<li class="">
 								<a href="contact.php">Contact</a>
 							</li>

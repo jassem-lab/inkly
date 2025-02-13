@@ -1,6 +1,5 @@
 <?php
-include ('db.php');
-
+include('db.php');
 // Get the service ID from the URL
 $mail = "";
 $url = "";

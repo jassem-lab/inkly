@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user'])) {
-    header('location:../login.php');
+    header('location:../website/login.php');
 }
 
 include('db.php');
@@ -98,7 +98,7 @@ while ($enreg = mysqli_fetch_array($query)) {
     <div class="app align-content-stretch d-flex flex-wrap">
         <div class="app-sidebar">
             <div class="logo">
-                <a href="#"><span class="logo-text"><img src="../assets/images/<?php echo $logo ?>" style="width : 100px ; " /></span></a>
+                <a href="./index.php"><span class="logo-text"><img src="../assets/images/<?php echo $logo ?>" style="width : 100px ; " /></span></a>
                 <div class="sidebar-user-switcher user-activity-online">
 
                     <!-- <span class="user-info-text">Mohamed Majdoub<br></span> -->
@@ -159,7 +159,7 @@ while ($enreg = mysqli_fetch_array($query)) {
                                 <a href="slider.php">Slider</a>
                             </li>
                             <li>
-                                <a href="services.php">Interface</a>
+                                <a href="services.php">Services</a>
                             </li>
                             <li>
                                 <a href="projectType.php">Colors</a>
