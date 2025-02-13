@@ -3,12 +3,9 @@ session_start();
 if (!isset($_SESSION['user'])) {
     header('location:../login.php');
 }
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "inkly";
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+include('db.php');
+
 $mail = "";
 $url = "";
 $Signature = "";
@@ -25,6 +22,7 @@ $adresse2 = "";
 $linkedin = "";
 $facebook = "";
 $instagram = "";
+$tiktok = "";
 $twitter = "";
 $behance = "";
 
@@ -39,7 +37,6 @@ while ($enreg = mysqli_fetch_array($query)) {
     $tel1 = $enreg["tel1"];
     $tel2 = $enreg["tel2"];
     $adresse = $enreg["adresse"];
-    // $linkedin = $enreg["linkedin"];
     $twitter = $enreg["twitter"];
     $facebook = $enreg["facebook"];
     $instagram = $enreg["instagram"];
@@ -115,7 +112,7 @@ while ($enreg = mysqli_fetch_array($query)) {
                         Apps
                     </li>
                     <li class="">
-                        <a href="dashboard.php" class="active"><i
+                        <a href="index.php" class="active"><i
                                 class="material-icons-two-tone">dashboard</i>Dashboard</a>
                     </li>
                     <li>

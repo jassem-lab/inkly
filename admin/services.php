@@ -1,56 +1,86 @@
 <?php include('./navbar_footer/navbar.php') ?>
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "inkly";
+// Database connection
+$conn = new mysqli("localhost", "root", "", "inkly");
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-if (!$conn) {
-    die('connection failed :' . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get the service name from the form
+    $service_name = $conn->real_escape_string($_POST['service_name']);
+    $content = $conn->real_escape_string($_POST['content']);
 
-if (isset($_POST['enregistrer_mail'])) {
+    // Insert the service into the services table
+    $insert_service_sql = "INSERT INTO services (title, content) VALUES ('$service_name', '$content')";
 
+    if ($conn->query($insert_service_sql) === TRUE) {
+        // Get the ID of the newly inserted service
+        $service_id = $conn->insert_id;
 
-    $titre = $_POST["titre"];
-    $description = $_POST["description"];
+        // Handle the uploaded images
+        $image_errors = [];
+        $image_urls = [];
 
-    $sql = "INSERT INTO `services`(`titre`,`description`) VALUES ('$titre','$description')";
+        if (isset($_FILES['images'])) {
+            foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
+                $image_name = $_FILES['images']['name'][$key];
+                $image_tmp = $_FILES['images']['tmp_name'][$key];
+                $image_size = $_FILES['images']['size'][$key];
 
-    if (mysqli_query($conn, $sql)) {
+                // Specify the directory where images will be uploaded
+                $upload_dir = '../assets/images/services/'; // Changed directory name to 'services'
 
-        echo '<SCRIPT LANGUAGE="JavaScript">document.location.href="services.php?ID=' . $id . '&suc=1" </SCRIPT>';
+                // Remove spaces from the image filename (replace spaces with underscores)
+                $image_name = str_replace(' ', '_', $image_name);
+
+                // Create the full image path
+                $image_url = $upload_dir . basename($image_name);
+
+                // Simple validation for image size and extension (optional)
+                if ($image_size > 5000000) {
+                    $image_errors[] = "File $image_name is too large.";
+                } elseif (!in_array(strtolower(pathinfo($image_name, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'gif'])) {
+                    $image_errors[] = "File $image_name is not a valid image.";
+                } else {
+                    // Move the image to the uploads directory
+                    if (move_uploaded_file($image_tmp, $image_url)) {
+                        // Add the successfully uploaded image's URL to the array
+                        $image_urls[] = $image_url;
+
+                        // Insert the image URL into the database, associating it with the service
+                        $insert_image_sql = "INSERT INTO service_images (service_id, image_url) VALUES (?, ?)"; // Changed table name
+                        $stmt = $conn->prepare($insert_image_sql);
+                        $stmt->bind_param("is", $service_id, $image_url);  // "i" for integer, "s" for string
+                        if (!$stmt->execute()) {
+                            $image_errors[] = "Failed to insert image $image_name into the database.";
+                        }
+                        $stmt->close();
+                    } else {
+                        $image_errors[] = "Failed to upload image $image_name.";
+                    }
+                }
+            }
+        } else {
+            // Show any image errors
+            foreach ($image_errors as $error) {
+                echo "<p>$error</p>";
+            }
+        }
     } else {
-        echo ' <div class="alert alert-custom alert-indicator-bottom indicator-danger" role="alert">
-        <div class="alert-content">
-            <span class="alert-title">Failed!</span>
-        </div>
-    </div>' . mysqli_error($conn);
+        echo "Error adding service: " . $conn->error;
     }
 }
 
-$titre = "";
-$strategy = "";
-$description = "";
-
-
+$service = "";
+$content = "";
+$title = "";
 ?>
 
+
 <div class="app-content">
-    <?php if (isset($_GET['suc'])) { ?>
-        <?php if ($_GET['suc'] == '1') { ?>
-            <br />
-            <div class="alert alert-custom alert-indicator-top indicator-success" role="alert">
-                <div class="alert-content">
-                    <span class="alert-title">Success!</span>
-                    <span class="alert-text">Service est mis à jour...</span>
-                </div>
-            </div>
-    <?php }
-    } ?>
     <div class="content-wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -60,69 +90,99 @@ $description = "";
                     </div>
                 </div>
             </div>
+
+
             <form class="row g-3 needs-validation" action="" method="POST" enctype="multipart/form-data">
+
+
+
                 <div class="col-md-3 position-relative mb-5">
                     <label for="validationTooltip02" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="validationTooltip02" name="titre" required>
+                    <input type="text" class="form-control" id="validationTooltip02" name="slider_name" required>
+                    <div class="valid-tooltip">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-3 position-relative mb-5">
+                    <label for="validationTooltip02" class="form-label">Image</label>
+                    <input class="form-control" type="file" name="images[]" id="images" multiple accept="image/*"
+                        required>
+                  
                     <div class="valid-tooltip">
                         Looks good!
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label for="validationTooltip02" class="form-label">Description</label>
                         <div class="card">
                             <div class="card-body">
-                                <textarea id='makeMeSummernote' name='description' class="form-control"></textarea>
+                                <textarea id='makeMeSummernote' name='content' class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class="col-12">
                     <button type="" class="btn btn-primary"
                         style="background-color:#0d7cbc;border-color: #8833ff;">Enregistrer</button>
                     <input class="form-control" type="hidden" name="enregistrer_mail">
+
                 </div>
             </form>
+
             <div class="row">
                 <div class="col">
                     <div class="page-description">
-                        <h3>Projects : </h3>
+                        <h3>Services : </h3>
                     </div>
                     <table class="table">
                         <thead class="table-dark">
                             <tr>
                                 <th scope="col">Title</th>
-                                <th scope="col">description</th>
-
+                                <th scope="col">Content</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+
                             <?php
+
                             $req = "select * from services";
                             $query = mysqli_query($conn, $req);
                             while ($enreg = mysqli_fetch_array($query)) {
                                 $id = $enreg["id"];
-                                $titre = $enreg["titre"];
-                                $description = $enreg["description"];
+                                $content = $enreg["content"];
+                                $title = $enreg["title"];
+                                // $req1 = "select * from slider_images where slider_id=".$id;
+                                // $query1= mysqli_query($conn,$req1);
+                                // while($enreg1= mysqli_fetch_array($query)){
+                                //     $slider = $enreg["image_url"];
 
-                                $date = $enreg["date"];
+                                // }
                             ?>
                                 <tr>
+                                    <td><?php echo $title ?></td>
+                                    <td><?php echo $content ?></td>
                                     <td>
-                                        <?php echo $titre ?>
+                                        <?php $req1 = "select * from service_images where service_id=" . $id;
+                                        $query1 = mysqli_query($conn, $req1);
+                                        while ($enreg1 = mysqli_fetch_array($query1)) {
+                                            $image = $enreg1['image_url'];
+                                            echo '<img src=' . $image . ' style="width : 20%"/>';
+                                        }
+                                        ?>
                                     </td>
-                                    <td>
-                                        <?php echo $description ?>
-                                    </td>
-                                    </td>
+
                                     <td><button type="button" onclick="Supprimer('<?php echo $id; ?>')"
                                             class="btn btn-danger btn-burger"><i
                                                 class="material-icons">delete_outline</i></button>
                                     </td>
                                 </tr>
                             <?php } ?>
+
                         </tbody>
                     </table>
                 </div>
@@ -136,7 +196,7 @@ $description = "";
     function Supprimer(id) {
         if (confirm('Confirmez-vous cette action?')) {
 
-            document.location.href = "./pages_supp/delete_project.php?ID=" + id;
+            document.location.href = "./pages_supp/delete_slider.php?ID=" + id;
         }
     }
 
