@@ -109,7 +109,80 @@ while ($enreg = mysqli_fetch_array($query)) {
             <div class="app-menu">
                 <ul class="accordion-menu">
                     <li class="sidebar-title">
-                        Apps
+                        Website
+                    </li>
+                    <li class="">
+                        <a href="index.php" class="active"><i
+                                class="material-icons-two-tone">dashboard</i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="material-icons-two-tone">view_agenda</i>Table de base<i
+                                class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="parametrage.php">Paramétrage</a>
+                            </li>
+                            <li>
+                                <a href="presentation.php">Présentation</a>
+                            </li>
+                            <li>
+                                <a href="slider.php">Slider</a>
+                            </li>
+                            <li>
+                                <a href="services.php">Services</a>
+                            </li>
+                            <li>
+                                <a href="projectType.php">Project type</a>
+                            </li>
+                            <li>
+                                <a href="realisations.php">Réalisations</a>
+                            </li>
+                            <li>
+                                <a href="devis.php">Gestion des devis</a>
+                            </li>
+                            <li>
+                                <a href="HowItWorks.php">About US Details</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="material-icons-two-tone">home</i>Interface<i
+                                class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="parametrage.php">Menu</a>
+                            </li>
+                            <li>
+                                <a href="presentation.php">Presentation</a>
+                            </li>
+                            <li>
+                                <a href="slider.php">Slider</a>
+                            </li>
+                            <li>
+                                <a href="services.php">Services</a>
+                            </li>
+                            <li>
+                                <a href="projectType.php">Colors</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href=""><i class="material-icons-two-tone">star</i>Pages<i
+                                class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="blog.php">Blog</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="http://localhost/inkly/"><i class="material-icons-two-tone">done</i>Visit Website</a>
+                    </li>
+                </ul>
+                <ul class="accordion-menu">
+                    <li class="sidebar-title">
+                        Gestionnaire
                     </li>
                     <li class="">
                         <a href="index.php" class="active"><i

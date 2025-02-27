@@ -10,21 +10,21 @@
 
 
 
-(function($) {
+(function ($) {
   "use strict";
 
 
   // back to top - start
   // --------------------------------------------------
-  $(window).scroll(function() {
+  $(window).scroll(function () {
     if ($(this).scrollTop() > 200) {
       $('#backtotop:hidden').stop(true, true).fadeIn();
     } else {
       $('#backtotop').stop(true, true).fadeOut();
     }
   });
-  $(function() {
-    $("#scroll").on('click', function() {
+  $(function () {
+    $("#scroll").on('click', function () {
       $("html,body").animate({
         scrollTop: $("#thetop").offset().top
       }, "slow");
@@ -37,8 +37,8 @@
 
   // preloader - start
   // --------------------------------------------------
-  $(window).on('load', function(){
-    $('#preloader').fadeOut('slow',function(){$(this).remove();});
+  $(window).on('load', function () {
+    $('#preloader').fadeOut('slow', function () { $(this).remove(); });
   });
   // preloader - end
   // --------------------------------------------------
@@ -46,8 +46,8 @@
 
   // background image - start
   // --------------------------------------------------
-  $('[data-background]').each(function() {
-    $(this).css('background-image', 'url('+ $(this).attr('data-background') + ')');
+  $('[data-background]').each(function () {
+    $(this).css('background-image', 'url(' + $(this).attr('data-background') + ')');
   });
   // background image - end
   // --------------------------------------------------
@@ -169,8 +169,8 @@
     mainClass: 'mfp-with-zoom mfp-img-mobile',
     image: {
       verticalFit: true,
-      titleSrc: function(item) {
-        return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'" target="_blank">image source</a>';
+      titleSrc: function (item) {
+        return item.el.attr('title') + ' &middot; <a class="image-source-link" href="' + item.el.attr('data-source') + '" target="_blank">image source</a>';
       }
     },
     gallery: {
@@ -179,7 +179,7 @@
     zoom: {
       enabled: true,
       duration: 300, // don't foget to change the duration also in CSS
-      opener: function(element) {
+      opener: function (element) {
         return element.find('img');
       }
     }
@@ -200,10 +200,10 @@
 
   // multy count down - start
   // --------------------------------------------------
-  $('.countdown-list').each(function(){
-    $('[data-countdown]').each(function() {
+  $('.countdown-list').each(function () {
+    $('[data-countdown]').each(function () {
       var $this = $(this), finalDate = $(this).data('countdown');
-      $this.countdown(finalDate, function(event) {
+      $this.countdown(finalDate, function (event) {
         var $this = $(this).html(event.strftime(''
           + '<li class="timer-item days"><strong>%D</strong><small>days</small></li>'
           + '<li class="timer-item hours"><strong>%H</strong><small>hours</small></li>'
@@ -219,14 +219,14 @@
   // home page sliders - start
   // --------------------------------------------------
   $('#agency-default-carousel').owlCarousel({
-    items:1,
-    margin:0,
-    nav:false,
-    loop:true,
-    autoplay:true,
-    smartSpeed:1000,
-    autoplayTimeout:6000,
-    autoplayHoverPause:true
+    items: 1,
+    margin: 0,
+    nav: false,
+    loop: true,
+    autoplay: true,
+    smartSpeed: 1000,
+    autoplayTimeout: 6000,
+    autoplayHoverPause: true
   });
   // home page sliders - start
   // --------------------------------------------------
@@ -235,29 +235,29 @@
   // partners carousel - start
   // --------------------------------------------------
   $('#partners-carousel').owlCarousel({
-    nav:true,
-    margin:0,
-    loop:true,
-    dots:false,
-    autoplay:true,
-    smartSpeed:1000,
-    autoplayTimeout:6000,
-    autoplayHoverPause:true,
-    responsive:{
-      0:{
-        items:1
+    nav: true,
+    margin: 0,
+    loop: true,
+    dots: false,
+    autoplay: true,
+    smartSpeed: 1000,
+    autoplayTimeout: 6000,
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 1
       },
-      380:{
-        items:2
+      380: {
+        items: 2
       },
-      480:{
-        items:3
+      480: {
+        items: 3
       },
-      600:{
-        items:3
+      600: {
+        items: 3
       },
-      1000:{
-        items:4
+      1000: {
+        items: 4
       }
     }
   });
@@ -268,40 +268,40 @@
   // testimonial carousel - start
   // --------------------------------------------------
   $('.testimonial-carousel-1').owlCarousel({
-    items:1,
-    nav:false,
-    loop:true,
-    margin:50,
-    autoplay:true,
-    smartSpeed:1000,
-    autoplayTimeout:6000,
-    autoplayHoverPause:true
+    items: 1,
+    nav: false,
+    loop: true,
+    margin: 50,
+    autoplay: true,
+    smartSpeed: 1000,
+    autoplayTimeout: 6000,
+    autoplayHoverPause: true
   });
   $('#testimonial-carousel-2').owlCarousel({
-    items:1,
-    nav:true,
-    loop:true,
-    margin:30,
-    dots:false,
-    autoplay:true,
-    smartSpeed:1000,
-    autoplayTimeout:6000,
-    autoplayHoverPause:true,
-    responsive:{
-      0:{
-        items:1
+    items: 1,
+    nav: true,
+    loop: true,
+    margin: 30,
+    dots: false,
+    autoplay: true,
+    smartSpeed: 1000,
+    autoplayTimeout: 6000,
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 1
       },
-      767:{
-        items:1
+      767: {
+        items: 1
       },
-      800:{
-        items:2
+      800: {
+        items: 2
       },
-      991:{
-        items:2
+      991: {
+        items: 2
       },
-      1000:{
-        items:2
+      1000: {
+        items: 2
       }
     }
   });
@@ -312,80 +312,80 @@
   // portfolio carousel - start
   // --------------------------------------------------
   $('#portfolio-carousel').owlCarousel({
-    nav:true,
-    margin:0,
-    loop:true,
-    dots:false,
-    smartSpeed:700,
-    responsive:{
-      0:{
-        items:1
+    nav: true,
+    margin: 0,
+    loop: true,
+    dots: false,
+    smartSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
       },
-      380:{
-        items:2
+      380: {
+        items: 2
       },
-      600:{
-        items:3
+      600: {
+        items: 3
       },
-      1000:{
-        items:4
+      1000: {
+        items: 4
       },
-      1920:{
-        items:4
+      1920: {
+        items: 4
       }
     }
   });
 
   $('#portfolio-carousel-2').owlCarousel({
-    nav:true,
-    margin:30,
-    loop:true,
-    dots:false,
-    smartSpeed:700,
-    responsive:{
-      0:{
-        items:1
+    nav: true,
+    margin: 30,
+    loop: true,
+    dots: false,
+    smartSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
       },
-      550:{
-        items:2
+      550: {
+        items: 2
       },
-      767:{
-        items:2
+      767: {
+        items: 2
       },
-      880:{
-        items:3
+      880: {
+        items: 3
       },
-      1000:{
-        items:3
+      1000: {
+        items: 3
       },
-      1920:{
-        items:3
+      1920: {
+        items: 3
       }
     }
   });
 
   $('#portfolio-carousel-3').owlCarousel({
-    items:1,
-    nav:true,
-    margin:0,
-    loop:true,
-    dots:false,
-    autoplay:true,
-    smartSpeed:1000,
-    autoplayTimeout:6000,
-    autoplayHoverPause:true,
+    items: 1,
+    nav: true,
+    margin: 0,
+    loop: true,
+    dots: false,
+    autoplay: true,
+    smartSpeed: 1000,
+    autoplayTimeout: 6000,
+    autoplayHoverPause: true,
   });
 
   $('#details-image-carousel').owlCarousel({
-    items:1,
-    margin:0,
-    nav:false,
-    loop:true,
-    autoplay:true,
-    smartSpeed:1000,
+    items: 1,
+    margin: 0,
+    nav: false,
+    loop: true,
+    autoplay: true,
+    smartSpeed: 1000,
     // animateIn:'fadeIn',
-    autoplayTimeout:6000,
-    autoplayHoverPause:true
+    autoplayTimeout: 6000,
+    autoplayHoverPause: true
   });
   // portfolio carousel - end
   // --------------------------------------------------
@@ -394,30 +394,30 @@
   // shop carousel - start
   // --------------------------------------------------
   $('#shop-carousel').owlCarousel({
-    nav:true,
-    margin:0,
-    loop:true,
-    margin:30,
-    dots:false,
-    smartSpeed:700,
-    responsive:{
-      0:{
-        items:1
+    nav: true,
+    margin: 0,
+    loop: true,
+    margin: 30,
+    dots: false,
+    smartSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
       },
-      480:{
-        items:2
+      480: {
+        items: 2
       },
-      580:{
-        items:2
+      580: {
+        items: 2
       },
-      600:{
-        items:3
+      600: {
+        items: 3
       },
-      1000:{
-        items:4
+      1000: {
+        items: 4
       },
-      1920:{
-        items:4
+      1920: {
+        items: 4
       }
     }
   });
@@ -428,23 +428,23 @@
   // team carousel - start
   // --------------------------------------------------
   $('#team-carousel').owlCarousel({
-    nav:true,
-    loop:true,
-    margin:30,
-    dots:false,
-    smartSpeed:1000,
-    responsive:{
-      0:{
-        items:1
+    nav: true,
+    loop: true,
+    margin: 30,
+    dots: false,
+    smartSpeed: 1000,
+    responsive: {
+      0: {
+        items: 1
       },
-      680:{
-        items:2
+      680: {
+        items: 2
       },
-      767:{
-        items:3
+      767: {
+        items: 3
       },
-      1000:{
-        items:3
+      1000: {
+        items: 3
       }
     }
   });
@@ -455,29 +455,29 @@
   // property carousel - start
   // --------------------------------------------------
   $('#property-carousel').owlCarousel({
-    nav:true,
-    margin:30,
-    loop:true,
-    dots:false,
-    autoplay:true,
-    smartSpeed:1000,
-    autoplayTimeout:6000,
-    autoplayHoverPause:true,
-    responsive:{
-      0:{
-        items:1
+    nav: true,
+    margin: 30,
+    loop: true,
+    dots: false,
+    autoplay: true,
+    smartSpeed: 1000,
+    autoplayTimeout: 6000,
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 1
       },
-      480:{
-        items:2
+      480: {
+        items: 2
       },
-      580:{
-        items:2
+      580: {
+        items: 2
       },
-      600:{
-        items:3
+      600: {
+        items: 3
       },
-      1000:{
-        items:3
+      1000: {
+        items: 3
       }
     }
   });
@@ -492,25 +492,25 @@
     layoutMode: 'fitRows'
   });
   var filterFns = {
-    numberGreaterThan50: function() {
+    numberGreaterThan50: function () {
       var number = $(this).find('.number').text();
-      return parseInt( number, 10 ) > 50;
+      return parseInt(number, 10) > 50;
     },
-    ium: function() {
+    ium: function () {
       var name = $(this).find('.name').text();
-      return name.match( /ium$/ );
+      return name.match(/ium$/);
     }
   };
-  $('.filters-button-group').on( 'click', 'button', function() {
-    var filterValue = $( this ).attr('data-filter');
-    filterValue = filterFns[ filterValue ] || filterValue;
+  $('.filters-button-group').on('click', 'button', function () {
+    var filterValue = $(this).attr('data-filter');
+    filterValue = filterFns[filterValue] || filterValue;
     $grid.isotope({ filter: filterValue });
   });
-  $('.button-group').each( function( i, buttonGroup ) {
-    var $buttonGroup = $( buttonGroup );
-    $buttonGroup.on( 'click', 'button', function() {
+  $('.button-group').each(function (i, buttonGroup) {
+    var $buttonGroup = $(buttonGroup);
+    $buttonGroup.on('click', 'button', function () {
       $buttonGroup.find('.is-checked').removeClass('is-checked');
-      $( this ).addClass('is-checked');
+      $(this).addClass('is-checked');
     });
   });
   // portfolio filter - end
@@ -530,12 +530,12 @@
 
   // masoney grid layout - start
   // --------------------------------------------------
-  var $masoney = $('.masoney-grid').imagesLoaded( function() {
+  var $masoney = $('.masoney-grid').imagesLoaded(function () {
     $masoney.masonry({
       itemSelector: '.grid-item',
       percentPosition: true,
       columnWidth: '.grid-sizer'
-    }); 
+    });
   });
   // masoney grid layout - end
   // --------------------------------------------------
@@ -543,18 +543,18 @@
 
   // price range - start
   // --------------------------------------------------
-  if($("#slider-range").length){
-    $( "#slider-range" ).slider({
+  if ($("#slider-range").length) {
+    $("#slider-range").slider({
       range: true,
       min: 5,
       max: 1000,
-      values: [ 30.00, 429.00 ],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      values: [30.00, 429.00],
+      slide: function (event, ui) {
+        $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
       }
     });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+      " - $" + $("#slider-range").slider("values", 1));
   }
 
   $('.ar_top').on('click', function () {
@@ -562,9 +562,9 @@
     var result = document.getElementById(getID);
     var qty = result.value;
     $('.proceed_to_checkout .update-cart').removeAttr('disabled');
-    if( !isNaN( qty ) ) {
+    if (!isNaN(qty)) {
       result.value++;
-    }else{
+    } else {
       return false;
     }
   });
@@ -574,8 +574,8 @@
 
   // quantity - start
   // --------------------------------------------------
-  (function() {
-    window.inputNumber = function(el) {
+  (function () {
+    window.inputNumber = function (el) {
       var min = el.attr("min") || false;
       var max = el.attr("max") || false;
 
@@ -584,7 +584,7 @@
       els.dec = el.prev();
       els.inc = el.next();
 
-      el.each(function() {
+      el.each(function () {
         init($(this));
       });
 
@@ -732,7 +732,7 @@
   init_gmap();
   */
 
-  if ( $('#mapBox').length ){
+  if ($('#mapBox').length) {
     var $lat = $('#mapBox').data('lat');
     var $lon = $('#mapBox').data('lon');
     var $zoom = $('#mapBox').data('zoom');
@@ -755,7 +755,7 @@
     map.addMarker({
       lat: $markerLat,
       lng: $markerLon,
-      icon: $marker,    
+      icon: $marker,
       infoWindow: {
         content: $info
       }
